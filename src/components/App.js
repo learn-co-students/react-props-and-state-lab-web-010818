@@ -1,22 +1,23 @@
 import React from 'react';
-
 import Filters from './Filters';
 import PetBrowser from './PetBrowser';
 
-class App extends React.Component {
-  constructor() {
-    super();
+export default class App extends React.Component {
+  state = {
+    pets: [],
+    adoptedPets: [],
+    filters: { type: 'all' }
+  }
 
-    this.state = {
-      pets: [],
-      adoptedPets: [],
-      filters: {
-        type: 'all',
-      }
-    };
+  fetchPets = () => {
+    let url = '/api/pets'
+    fetch(url)
+    .then(res => res.json)
+    .then(json => this.setState({ pets: json}))
   }
 
   render() {
+    this.fetchPets()
     return (
       <div className="ui container">
         <header>
@@ -28,7 +29,7 @@ class App extends React.Component {
               <Filters />
             </div>
             <div className="twelve wide column">
-              <PetBrowser />
+              <PetBrowser pets={this.state.pets} />
             </div>
           </div>
         </div>
@@ -36,5 +37,3 @@ class App extends React.Component {
     );
   }
 }
-
-export default App;

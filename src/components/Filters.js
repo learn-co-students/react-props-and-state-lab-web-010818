@@ -1,9 +1,7 @@
 import React from 'react';
 
-class Filters extends React.Component {
-  constructor() {
-    super();
-  }
+export default class Filters extends React.Component {
+
 
   render() {
     return (
@@ -25,5 +23,3 @@ class Filters extends React.Component {
     );
   }
 }
-
-export default Filters;

@@ -1,10 +1,6 @@
 import React from 'react';
 
-class Pet extends React.Component {
-  constructor() {
-    super();
-  }
-
+export default class Pet extends React.Component {
   render() {
     return (
       <div className="card">
@@ -26,5 +22,3 @@ class Pet extends React.Component {
     );
   }
 }
-
-export default Pet;
