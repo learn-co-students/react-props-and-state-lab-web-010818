@@ -5,13 +5,13 @@ export default class Pet extends React.Component {
     return (
       <div className="card">
         <div className="content">
-          <a className="header">Pet name (gender: ♂ or ♀)</a>
+          <a className="header">{this.props.details.name} {this.props.details.gender === 'male' ? '♂' : '♀' }</a>
           <div className="meta">
-            <span className="date">Pet type</span>
+            <span className="date">{this.props.details.type}</span>
           </div>
           <div className="description">
-            <p>Age: </p>
-            <p>Weight: </p>
+            <p>Age: {this.props.details.age}</p>
+            <p>Weight: {this.props.details.weight}</p>
           </div>
         </div>
         <div className="extra content">

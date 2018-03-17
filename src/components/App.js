@@ -10,14 +10,17 @@ export default class App extends React.Component {
   }
 
   fetchPets = () => {
-    let url = '/api/pets'
+    let url = '/api/pets';
     fetch(url)
-    .then(res => res.json)
-    .then(json => this.setState({ pets: json}))
+    .then(res => res.json())
+    .then(json => this.setState({ pets: json}));
+  }
+
+  componentDidMount() {
+    this.fetchPets();
   }
 
   render() {
-    this.fetchPets()
     return (
       <div className="ui container">
         <header>
