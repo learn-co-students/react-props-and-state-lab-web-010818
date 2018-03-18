@@ -11,6 +11,10 @@ export default class App extends React.Component {
 
   fetchPets = () => {
     let url = '/api/pets';
+    if (this.state.filters.type !== 'all') {
+      url += `?type=${this.state.filters.type}`;
+    }
+    console.log(url)
     fetch(url)
     .then(res => res.json())
     .then(json => this.setState({ pets: json}));
@@ -18,6 +22,14 @@ export default class App extends React.Component {
 
   componentDidMount() {
     this.fetchPets();
+  }
+
+  handleFilter = (type) => {
+    this.setState({ filters: Object.assign({}, {type: type} )});
+  }
+
+  adoptPet = (petId) => {
+    this.setState({ adoptedPets: [...this.state.adoptedPets, petId] })
   }
 
   render() {
@@ -29,10 +41,10 @@ export default class App extends React.Component {
         <div className="ui container">
           <div className="ui grid">
             <div className="four wide column">
-              <Filters />
+              <Filters onChangeType={this.handleFilter} onFindPetsClick={this.fetchPets} />
             </div>
             <div className="twelve wide column">
-              <PetBrowser pets={this.state.pets} />
+              <PetBrowser pets={this.state.pets} adoptedPets={this.state.adoptedPets} onAdoptPet={this.adoptPet} />
             </div>
           </div>
         </div>

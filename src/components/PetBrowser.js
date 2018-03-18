@@ -3,10 +3,11 @@ import Pet from './Pet';
 
 
 export default class PetBrowser extends React.Component {
+
   generatePetCards = () => {
     return this.props.pets.map(p => (
-      <Pet details={p} key={p.id}/>
-    ))
+      <Pet pet={p} key={p.id} onAdoptPet={this.props.onAdoptPet} isAdopted={this.props.adoptedPets.includes(p.id)} />
+    ));
   }
 
   render() {
