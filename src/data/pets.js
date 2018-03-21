@@ -280,6 +280,7 @@ const allPets = [
     "name": "Hennessy"
   }
 ];
+export default allPets
 
 export const getAll = () => allPets;
 export const getByType = type => allPets.filter(pet => pet.type === type);
